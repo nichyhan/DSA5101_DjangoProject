@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% bootstrap_messages %}
+
+    <meta charset="UTF-8">
+    <title>Movies</title>
+    <body class="bg-dark"></body>
+
+    <div class="container p-3 mb-2 bg-dark text-white">
+        <div class="d-flex justify-content-center"><h1>MOVIES</h1></div>
+        <br>
+        <div class="row d-flex justify-content-center">
+            {% for m in movies %}
+            <div class="card bg-dark" style="width: 15rem;">
+                <img src='{{ m.poster }}' class="card-img-top" alt="...">
+                <br>
+                <h5 class="card-title">{{ m }}</h5>
+                <p class="card-text text-muted"><i>({{ m.grade }})</i></p>
+                <p class="card-text">{{ m.duration }} minutes</p>
+                <div class=".col-md-4">
+                    <a href="#" class="btn btn-primary">Buy tickets</a>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+</head>
+<body>
+
+</body>
+</html>
