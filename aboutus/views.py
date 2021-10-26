@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Movie
 
 def index(request):
-    return HttpResponse("About us")
+    return render(request, 'aboutus.html')
 
 def movie(request):
     m = Movie.objects.all()

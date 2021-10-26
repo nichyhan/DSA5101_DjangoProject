@@ -8,31 +8,38 @@
 
     <meta charset="UTF-8">
     <title>Movies</title>
-    <body class="bg-dark"></body>
+
+</head>
+<body class="bg-dark">
 
     <div class="container p-3 mb-2 bg-dark text-white">
-        <div class="d-flex justify-content-center"><h1>MOVIES</h1></div>
+        <div class="d-flex justify-content-center"><h1>NOW SHOWING</h1></div>
         <br>
         <div class="row d-flex justify-content-center">
             {% for m in movies %}
-            <div class="card bg-dark" style="width: 15rem;">
-                <img src='{{ m.poster }}' class="card-img-top" alt="...">
-                <br>
-                <h5 class="card-title">{{ m }}</h5>
-                <p class="card-text text-muted"><i>({{ m.grade }})</i></p>
-                <p class="card-text">{{ m.duration }} minutes</p>
-                <div class=".col-md-4">
-                    <a href="#" class="btn btn-primary">Buy tickets</a>
+            <div class="card bg-dark border border-dark" style="width: 15rem;">
+                <div class="col-12">
+                    <img src='{{ m.poster }}' class="card-img-top" alt="...">
                 </div>
-
+                <br>
+                <div class="col-12">
+                    <h6 class="card-title" style="height: 42px; overflow: hidden;">{{ m }}</h6>
+                </div>
+                <div class="col-12">
+                    <p class="card-text text-muted" style="height: 30px; overflow: hidden;"><i>({{ m.grade }})</i></p>
+                </div>
+                <div class="col-12">
+                    <p class="card-text">{{ m.duration }} minutes</p>
+                </div>
+                <br>
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary">Buy tickets</button>
+                </div>
+                <br>
             </div>
             {% endfor %}
         </div>
     </div>
-
-
-</head>
-<body>
 
 </body>
 </html>
