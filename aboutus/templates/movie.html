@@ -9,8 +9,60 @@
     <meta charset="UTF-8">
     <title>Movies</title>
 
+    <!-- Import JavaScript for the dropdown function -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </head>
 <body class="bg-dark">
+    <br>
+    <div class="container text-white border border-light">
+        <h5>I created a new model 'Genre' and add movie genre via an admin page. All genre are listed in the checkbox.</h5>
+        <h5>Since Django is a server-side rendering, we have to select checkboxes and then click the 'OK' button to render the page.</h5>
+        <h5>Once you click 'OK', Django will render /about-us/movies/filter/. The selected filter that you have chosen will be shown under the red text.</h5>
+        <h5>You can edit the code in def filter(request): in views.py</h5>
+
+        <form action="/about-us/movies/filter/" method="post">
+            {% csrf_token %}
+            <label> Filter by Genre </label>
+
+            {% for g in genre %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="genre_checkbox" value="{{ g.name }}" id="checkbox1">
+                    <label class="form-check-label" for="checkbox1">
+                        {{ g.name }}
+                    </label>
+                </div>
+            {% endfor %}
+
+
+            <input type="submit" value="OK">
+        </form>
+        <br><label style="color: red">Below are selected filters that you can use to filter movie in view.py. </label>
+        <br><label>{% for sg in selected_genre %} {{ sg }} {% endfor %}</label>
+    </div>
+
+    <br>
+
+    <!-- This div is for a 'Sort' dropdown. Need JavaScript above to be functional. -->
+    <div class="container text-white border border-light">
+        <h5>This is a sort function. Once you select a sort option, Django will render path in href of each option</h5>
+        <h5>You can add new functions after sortbyname in views.py</h5>
+        <h5>You can add new path in urls.py</h5>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/about-us/movies/sortbyname/">by movie name A-Z</a>
+            <a class="dropdown-item" href="#">...</a>
+            <a class="dropdown-item" href="#">...</a>
+          </div>
+        </div>
+    </div>
+
+    <br>
 
     <div class="container p-3 mb-2 bg-dark text-white">
         <div class="d-flex justify-content-center"><h1>NOW SHOWING</h1></div>
