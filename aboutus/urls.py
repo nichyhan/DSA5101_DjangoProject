@@ -6,12 +6,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('movies/', views.movie, name='movie'),
     path('movies/sortbyname/', views.sortbyname, name='sortbyname'),
-    # Add paths which link to view.py
-    # 1) sort by duration
-    # 2) sort by date released
+    path('movies/durationascending/', views.durationascending, name='durationascending'),
+    path('movies/durationdecending/', views.durationdecending, name='durationdecending'),
+    path('movies/sortbyreleased/', views.sortbyreleased, name='sortbyreleased'),
 
-    path('movies/filter/', views.filter, name='moviefilter'),
-
-
+    path('movies/filter/', views.filter, name='filter'),
 
 ]
