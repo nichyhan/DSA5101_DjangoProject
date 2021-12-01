@@ -20,16 +20,19 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <div class="col-2">
-                <a class="navbar-brand">CINEMA NAME</a>
+                <a class="navbar-brand"><b>DSML Online Store</b></a>
             </div>
             <div class="nav-item col-1">
                 <a class="nav-link" href="/about-us/">About us</a>
             </div>
             <div class="nav-item col-1">
-                <a class="nav-link" href="#">Header2</a>
+                <a class="nav-link" href="/about-us/movies/">Movies</a>
             </div>
             <div class="nav-item col-1">
-                <a class="nav-link" href="#">Header3</a>
+                <a class="nav-link" href="#">Basketball</a>
+            </div>
+            <div class="nav-item col-1">
+                <a class="nav-link" href="#">Origami</a>
             </div>
             <div class="col-7">
             </div>
@@ -37,42 +40,59 @@
     </nav>
 
     <br>
-    <div class="container text-white border border-light">
-
-        <form action="/about-us/movies/filter/" method="post">
-            {% csrf_token %}
-            <label> Filter by Genre </label>
-
-            {% for g in genre %}
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="genre_checkbox" value="{{ g.name }}" id="checkbox1">
-                    <label class="form-check-label" for="checkbox1">
-                        {{ g.name }}
-                    </label>
-                </div>
-            {% endfor %}
-            <br>
-            <label>Sort by</label>
-            <select class="form-select" aria-label="Default select example" name="sort_dropdown">
-                <option value="1">Movie name A-Z</option>
-                <option value="2">Duration ascending</option>
-                <option value="3">Duration decending</option>
-                <option value="4">Released date</option>
-            </select>
-            <br>
-            <input type="submit" value="OK">
-        </form>
-        <br><label style="color: red">Below are selected filters that you can use to filter movie in view.py. </label>
-        <br><label>{% for sg in selected_genre %} {{ sg }} {% endfor %}</label>
-        <br><label style="color: red">Below are selected sort</label>
-        <br><label>{% for ss in selected_sort %} {{ ss }} {% endfor %}</label>
-    </div>
-
     <br>
 
     <div class="container p-3 mb-2 bg-dark text-white">
         <div class="d-flex justify-content-center"><h1>NOW SHOWING</h1></div>
-        <br>
+
+        <hr style="height:3px;border-width:0;color:gray;background-color:gray">
+
+        <div class="container text-white">
+
+            <form action="/about-us/movies/filter/" method="post">
+                <div class="row">
+                    {% csrf_token %}
+
+                    <div class="col">
+                        <label> Filter by Genre </label>
+
+                        {% for g in genre %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="genre_checkbox" value="{{ g.name }}" id="checkbox1">
+                                <label class="form-check-label" for="checkbox1">
+                                    {{ g.name }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col">
+                        <label>Sort by</label>
+                        <select class="form-select" aria-label="Default select example" name="sort_dropdown">
+                            <option value="1">Movie name A-Z</option>
+                            <option value="2">Duration ascending</option>
+                            <option value="3">Duration decending</option>
+                            <option value="4">Released date</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <input type="submit" class="btn btn-success" value="Filter and Sort">
+                    </div>
+                    <div class="col-5"></div>
+                </div>
+            </form>
+
+        <hr style="height:3px;border-width:0;color:gray;background-color:gray">
+        <!--
+        <br><label style="color: red">Below are selected filters that you can use to filter movie in view.py. </label>
+        <br><label>{% for sg in selected_genre %} {{ sg }} {% endfor %}</label>
+        <br><label style="color: red">Below are selected sort</label>
+        <br><label>{% for ss in selected_sort %} {{ ss }} {% endfor %}</label>
+        -->
+
+    </div>
+
+
         <div class="row d-flex justify-content-center">
             {% for m in movies %}
             <div class="card bg-dark border border-dark" style="width: 15rem;">

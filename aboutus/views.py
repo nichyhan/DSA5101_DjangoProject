@@ -37,8 +37,17 @@ def filter(request):
     selected_genre = request.POST.getlist('genre_checkbox')
     selected_sort = request.POST.getlist('sort_dropdown')
 
-    movies = Movie.objects.all()
+    if (selected_sort[0] == '1'):
+        selected_movies = Movie.objects.filter(genre__name__in=selected_genre).order_by('name')[:]
+    elif (selected_sort[0] == '2'):
+        selected_movies = Movie.objects.filter(genre__name__in=selected_genre).order_by('duration')[:]
+    elif (selected_sort[0] == '3'):
+        selected_movies = Movie.objects.filter(genre__name__in=selected_genre).order_by('-duration')[:]
+    else:
+        selected_movies = Movie.objects.filter(genre__name__in=selected_genre).order_by('released')[:]
 
-    return render(request, 'movie.html', {'movies': movies, 'genre': g, 'selected_genre': selected_genre, 'selected_sort':selected_sort})
+    movies = selected_movies
+
+    return render(request, 'movie.html', {'movies': movies, 'genre': g, 'selected_genre': selected_movies, 'selected_sort':selected_sort})
 
 
